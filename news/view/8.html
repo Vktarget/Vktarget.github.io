@@ -1,0 +1,488 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+  <head>
+    <meta name="yandex-verification" content="445237be6de83719">
+  <meta name="google-site-verification" content="_FBGrgG8w9CDhQIBHbwMay9QaRvNX4b99ErSayRAOL8">
+  <meta name="w1-verification" content="129501613252">
+  <meta name="webmoney.attestation.label" content="webmoney attestation label#0412D268-1BF1-4AD9-A7A3-D64920366CE6"> 
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<link href="..\..\design\css\style.css?12" rel="stylesheet" type="text/css">
+	<link href="..\..\design\css\formstyler.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="..\..\design\images\favicon.ico" type="image/x-icon">
+  <script type="text/javascript" src="..\..\design\js\jquery.min.js"></script>
+  <script type="text/javascript" src="..\..\design\js\jquery.autoresize.js"></script>
+  <script type="text/javascript" src="..\..\design\js\jquery.formstyler.js"></script>
+  <script type="text/javascript" src="..\..\design\js\jquery.arcticmodal.js"></script>
+  <!--<script type="text/javascript" src="/design/js/jquery.powerful-placeholder.js"></script>-->
+  <script type="text/javascript" src="..\..\design\js\all.js?1221" charset="windows-1251"></script>
+  <script type="text/javascript" src="..\..\design\js\other.js?33223122"></script>
+  <script type="text/javascript" src="..\..\design\js\jquery.cookie.js"></script>
+  <script type="text/javascript" src="..\..\design\js\toastr\toastr.min.js"></script>
+
+  <script>
+    $(function () {
+      //$.Placeholder.init({ color : "#aaa" });
+      $('input, select:not(.no-styler)').styler();
+    });
+  </script>
+	
+
+  <title>Биржа поинтов</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+  </head>			
+  <body><div class="main-wrapper"><div id="wr">
+    <script>
+    $(document).ready(function(){
+    $('.nav-mobile').click(function(){
+    $('#nav').toggle('slow');
+    });
+    });
+    </script>
+    
+    <!-- header -->
+    <div id="head"><!-- logo -->
+        <div id="logo">
+          <a href="..\..\index.htm"><img src="..\..\design\images\logo.png" alt=""></a>
+        </div>
+        <!-- end logo --><!-- navi -->
+      <span class="nav-mobile"></span>
+      <div id="nav">
+        <ul>
+          <li><a href="..\..\login.html">Вход</a>
+          <li><a href="https://vkstorm.ru/assignments">Доступные задания</a>
+          <li><a href="https://vkstorm.ru/campaign">Мои задания</a>
+          <li><a href="https://vkstorm.ru/campaign/add">Создать задание</a>
+          <li><a href="https://vkstorm.ru/auction">Аукцион</a>
+        </li></ul>
+      </div>
+      <!-- end navi -->
+		
+		</div>
+    <!-- end header -->
+    
+    <!-- content -->
+    <div id="content"><script>  
+  function on(n) {   
+    jQuery('#text'+n).css('display' ,'block'); 
+    jQuery('#ontext'+n).css('display' ,'none');  
+    jQuery('#offtext'+n).css('display' ,'inline'); 
+  } 
+
+  function off(n) {  
+    jQuery('#text'+n).css('display' ,'none'); 
+    jQuery('#ontext'+n).css('display' ,'inline'); 
+    jQuery('#offtext'+n).css('display' ,'none'); 
+  } 
+  </script>
+
+  <script type="text/javascript">
+  function commentRating(id, operation) {
+    $.ajax({
+        type: "POST",
+        url: "../../data/news_commrating.php",
+        data: "id=" + id + "&operation=" + operation,
+        success: function(html){
+        $("#commentRating" + id).html(html);
+      }
+    });
+  }
+  </script><!-- left col -->
+  <div id="left_col">
+  <div class="cn_head"><h2><a href="..\..\news.html">Новости</a> / Биржа поинтов</h2></div>
+  <div class="cn_block"><p>Доброго времени суток!<br>
+<br>
+Сегодня мы запускаем <b>биржу поинтов</b> - то, чего многие так долго ждали!<br>
+Теперь поинты можно не только потратить на накрутку своих заданий, но и <b>продать</b>.<br>
+<br>
+<a href="http://vkstorm.ru/exchange">Биржа поинтов</a> - раздел, в котором можно продать свои поинты администрации.<br>
+Полученные за продажу поинтов средства можно вывести на <u>WebMoney R-кошелек</u> или на <u>баланс телефона</u>.<br>
+Для выгодной продажи следите за <b>курсом</b>. Курс меняется ежедневно в 01:00 (мск).</p>
+
+  <div class="info-post-news">
+  <span class="time">17 ноября 2014</span>
+  <span class="views" title="просмотры">35382</span>
+  </div><a id="comments"></a>
+    <div class="comments-tabs"><script>
+    var thisPageNum = 1;
+    var thisWork = 1;
+    var kp = 7;
+    
+    function getNextP(){
+      if(thisWork == 1 && thisPageNum < kp){
+        thisWork = 0;
+        $("#comments-upBlock").css('display','block');
+        $('input[name=more]').css('display','none');
+        $.get("../../data/news_comments.php?&news_id=8&p="+thisPageNum, function(data){
+        $("#comments-upBlock").css('display','none');
+        $('input[name=more]').css('display','inline-block');
+        $("#loadComments").html($("#loadComments").html()+" "+data);
+        thisPageNum = thisPageNum + 1;
+        thisWork = 1;
+        if(kp == thisPageNum) $('input[name=more]').remove();
+        });
+      }
+    }
+    
+    $(document).ready(function(){
+      $('input[name=more]').click(function(){
+       getNextP();
+      });
+
+      var tab_id = '';
+      
+      jQuery('.comments-tab-selected').click(function(){
+        jQuery('.comments-tab-selected').removeClass('selected');
+        jQuery(this).addClass('selected');		
+        tab_id = jQuery(this).attr('id').split('_');
+        jQuery('.all-content').hide();
+        jQuery('#all-content_'+tab_id[1]).show();	
+      });
+      jQuery('#comments-tab-selected_1').trigger('click');
+    });	  
+    </script>
+    
+    <div id="comments-tab-selected_1" class="comments-tab-selected">Комментарии [65]</div><div id="all-content_1" class="all-content">
+    <div class="tab-content"><p style="clear:both;">Для комментирования требуется <a href="..\..\login-6.html?back=https%3A%2F%2Fvkstorm.ru%2Fnews%2Fview%2F8">авторизация</a>.</p><div class="comment-b">
+          <div class="left-com-b">
+        
+            <a id="comment265"></a>
+            <span class="n-o"><b>Виталик Огор</b> [ID: 63964131] <span class="d-m">отвечает</span> <a id="comment_output262" href="#comment262">Евгений Сидоров [ID: 328948867]</a></span>
+            
+            <span class="t-m">Евгений, ага)</span>
+          
+            <noindex>
+            <span id="ontextblock265" style="display: inline;">
+            <span class="d-m"><small><a href="#comment265">2 года  назад</a></small> | <a href="javascript:on('block265');">Ответить</a></span>
+            </span>  
+            <span id="offtextblock265" style="display: none;">
+            <span class="d-m"><small><a href="#comment265">2 года  назад</a></small> | <a href="javascript:off('block265');">Скрыть</a></span>
+            </span>
+            </noindex>
+            
+            
+            </div>
+            </div>
+                
+            <div id="textblock265" style="display: none;">
+            <form id="commentsForm" method="post" action="./8#comments"><p>Для комментирования требуется <a href="..\..\login-6.html?back=https%3A%2F%2Fvkstorm.ru%2Fnews%2Fview%2F8">авторизация</a>.</p></form>
+            </div>
+            
+          <div class="comment-b">
+          <div class="left-com-b">
+        
+            <a id="comment262"></a>
+            <span class="n-o"><b>Евгений Сидоров</b> [ID: 328948867]</span>
+            
+            <span class="t-m">Эх, а ещё 2 года назад писали, что курс не будет ниже 30 рублей...</span>
+          
+            <noindex>
+            <span id="ontextblock262" style="display: inline;">
+            <span class="d-m"><small><a href="#comment262">3 года  назад</a></small> | <a href="javascript:on('block262');">Ответить</a></span>
+            </span>  
+            <span id="offtextblock262" style="display: none;">
+            <span class="d-m"><small><a href="#comment262">3 года  назад</a></small> | <a href="javascript:off('block262');">Скрыть</a></span>
+            </span>
+            </noindex>
+            
+            
+            </div>
+            </div>
+                
+            <div id="textblock262" style="display: none;">
+            <form id="commentsForm" method="post" action="./8#comments"><p>Для комментирования требуется <a href="..\..\login-6.html?back=https%3A%2F%2Fvkstorm.ru%2Fnews%2Fview%2F8">авторизация</a>.</p></form>
+            </div>
+            
+          <div class="comment-b">
+          <div class="left-com-b">
+        
+            <a id="comment105"></a>
+            <span class="n-o"><b>Сергей Чумаченко</b> [ID: 211180481] <span class="d-m">отвечает</span> <a id="comment_output100" href="#comment100">Mischa Girt [ID: 330027153]</a></span>
+            
+            <span class="t-m">Mischa, сколько нужно?</span>
+          
+            <noindex>
+            <span id="ontextblock105" style="display: inline;">
+            <span class="d-m"><small><a href="#comment105">4 года  назад</a></small> | <a href="javascript:on('block105');">Ответить</a></span>
+            </span>  
+            <span id="offtextblock105" style="display: none;">
+            <span class="d-m"><small><a href="#comment105">4 года  назад</a></small> | <a href="javascript:off('block105');">Скрыть</a></span>
+            </span>
+            </noindex>
+            
+            
+            </div>
+            </div>
+                
+            <div id="textblock105" style="display: none;">
+            <form id="commentsForm" method="post" action="./8#comments"><p>Для комментирования требуется <a href="..\..\login-6.html?back=https%3A%2F%2Fvkstorm.ru%2Fnews%2Fview%2F8">авторизация</a>.</p></form>
+            </div>
+            
+          <div class="comment-b">
+          <div class="left-com-b">
+        
+            <a id="comment104"></a>
+            <span class="n-o"><b>Александр Растихин</b> [ID: 264162032]</span>
+            
+            <span class="t-m">100 поинтов = 3.36 руб<br>
+смешно))</span>
+          
+            <noindex>
+            <span id="ontextblock104" style="display: inline;">
+            <span class="d-m"><small><a href="#comment104">4 года  назад</a></small> | <a href="javascript:on('block104');">Ответить</a></span>
+            </span>  
+            <span id="offtextblock104" style="display: none;">
+            <span class="d-m"><small><a href="#comment104">4 года  назад</a></small> | <a href="javascript:off('block104');">Скрыть</a></span>
+            </span>
+            </noindex>
+            
+            
+            </div>
+            </div>
+                
+            <div id="textblock104" style="display: none;">
+            <form id="commentsForm" method="post" action="./8#comments"><p>Для комментирования требуется <a href="..\..\login-6.html?back=https%3A%2F%2Fvkstorm.ru%2Fnews%2Fview%2F8">авторизация</a>.</p></form>
+            </div>
+            
+          <div class="comment-b">
+          <div class="left-com-b">
+        
+            <a id="comment103"></a>
+            <span class="n-o"><b>Иван Рубцов</b> [ID: 285598716] <span class="d-m">отвечает</span> <a id="comment_output102" href="#comment102">Веб Лаборатория [ID: 329603794]</a></span>
+            
+            <span class="t-m">Веб, Усть проги спец для этого</span>
+          
+            <noindex>
+            <span id="ontextblock103" style="display: inline;">
+            <span class="d-m"><small><a href="#comment103">4 года  назад</a></small> | <a href="javascript:on('block103');">Ответить</a></span>
+            </span>  
+            <span id="offtextblock103" style="display: none;">
+            <span class="d-m"><small><a href="#comment103">4 года  назад</a></small> | <a href="javascript:off('block103');">Скрыть</a></span>
+            </span>
+            </noindex>
+            
+            
+            </div>
+            </div>
+                
+            <div id="textblock103" style="display: none;">
+            <form id="commentsForm" method="post" action="./8#comments"><p>Для комментирования требуется <a href="..\..\login-6.html?back=https%3A%2F%2Fvkstorm.ru%2Fnews%2Fview%2F8">авторизация</a>.</p></form>
+            </div>
+            
+          <div class="comment-b">
+          <div class="left-com-b">
+        
+            <a id="comment102"></a>
+            <span class="n-o"><b>Веб Лаборатория</b> [ID: 329603794]</span>
+            
+            <span class="t-m">Всем привет! <br>
+Кто может в одноклассниках подписчиков крутить?</span>
+          
+            <noindex>
+            <span id="ontextblock102" style="display: inline;">
+            <span class="d-m"><small><a href="#comment102">4 года  назад</a></small> | <a href="javascript:on('block102');">Ответить</a></span>
+            </span>  
+            <span id="offtextblock102" style="display: none;">
+            <span class="d-m"><small><a href="#comment102">4 года  назад</a></small> | <a href="javascript:off('block102');">Скрыть</a></span>
+            </span>
+            </noindex>
+            
+            
+            </div>
+            </div>
+                
+            <div id="textblock102" style="display: none;">
+            <form id="commentsForm" method="post" action="./8#comments"><p>Для комментирования требуется <a href="..\..\login-6.html?back=https%3A%2F%2Fvkstorm.ru%2Fnews%2Fview%2F8">авторизация</a>.</p></form>
+            </div>
+            
+          <div class="comment-b">
+          <div class="left-com-b">
+        
+            <a id="comment101"></a>
+            <span class="n-o"><b>Дарья Фадеева</b> [ID: 318909084]</span>
+            
+            <span class="t-m">А какова цена 1 поинта при продаже?</span>
+          
+            <noindex>
+            <span id="ontextblock101" style="display: inline;">
+            <span class="d-m"><small><a href="#comment101">4 года  назад</a></small> | <a href="javascript:on('block101');">Ответить</a></span>
+            </span>  
+            <span id="offtextblock101" style="display: none;">
+            <span class="d-m"><small><a href="#comment101">4 года  назад</a></small> | <a href="javascript:off('block101');">Скрыть</a></span>
+            </span>
+            </noindex>
+            
+            
+            </div>
+            </div>
+                
+            <div id="textblock101" style="display: none;">
+            <form id="commentsForm" method="post" action="./8#comments"><p>Для комментирования требуется <a href="..\..\login-6.html?back=https%3A%2F%2Fvkstorm.ru%2Fnews%2Fview%2F8">авторизация</a>.</p></form>
+            </div>
+            
+          <div class="comment-b">
+          <div class="left-com-b">
+        
+            <a id="comment100"></a>
+            <span class="n-o"><b>Mischa Girt</b> [ID: 330027153]</span>
+            
+            <span class="t-m">Купплю поинты писать в лс</span>
+          
+            <noindex>
+            <span id="ontextblock100" style="display: inline;">
+            <span class="d-m"><small><a href="#comment100">4 года  назад</a></small> | <a href="javascript:on('block100');">Ответить</a></span>
+            </span>  
+            <span id="offtextblock100" style="display: none;">
+            <span class="d-m"><small><a href="#comment100">4 года  назад</a></small> | <a href="javascript:off('block100');">Скрыть</a></span>
+            </span>
+            </noindex>
+            
+            
+            </div>
+            </div>
+                
+            <div id="textblock100" style="display: none;">
+            <form id="commentsForm" method="post" action="./8#comments"><p>Для комментирования требуется <a href="..\..\login-6.html?back=https%3A%2F%2Fvkstorm.ru%2Fnews%2Fview%2F8">авторизация</a>.</p></form>
+            </div>
+            
+          <div class="comment-b">
+          <div class="left-com-b">
+        
+            <a id="comment99"></a>
+            <span class="n-o"><b>Курицы-И-Петухи Сорочинска</b> [ID: 305092532] <span class="d-m">отвечает</span> <a id="comment_output98" href="#comment98">Курицы-И-Петухи Сорочинска [ID: 305092532]</a></span>
+            
+            <span class="t-m">Курицы-И-Петухи, )</span>
+          
+            <noindex>
+            <span id="ontextblock99" style="display: inline;">
+            <span class="d-m"><small><a href="#comment99">4 года  назад</a></small> | <a href="javascript:on('block99');">Ответить</a></span>
+            </span>  
+            <span id="offtextblock99" style="display: none;">
+            <span class="d-m"><small><a href="#comment99">4 года  назад</a></small> | <a href="javascript:off('block99');">Скрыть</a></span>
+            </span>
+            </noindex>
+            
+            
+            </div>
+            </div>
+                
+            <div id="textblock99" style="display: none;">
+            <form id="commentsForm" method="post" action="./8#comments"><p>Для комментирования требуется <a href="..\..\login-6.html?back=https%3A%2F%2Fvkstorm.ru%2Fnews%2Fview%2F8">авторизация</a>.</p></form>
+            </div>
+            
+          <div class="comment-b">
+          <div class="left-com-b">
+        
+            <a id="comment98"></a>
+            <span class="n-o"><b>Курицы-И-Петухи Сорочинска</b> [ID: 305092532]</span>
+            
+            <span class="t-m">Продам 180 поинтов</span>
+          
+            <noindex>
+            <span id="ontextblock98" style="display: inline;">
+            <span class="d-m"><small><a href="#comment98">4 года  назад</a></small> | <a href="javascript:on('block98');">Ответить</a></span>
+            </span>  
+            <span id="offtextblock98" style="display: none;">
+            <span class="d-m"><small><a href="#comment98">4 года  назад</a></small> | <a href="javascript:off('block98');">Скрыть</a></span>
+            </span>
+            </noindex>
+            
+            
+            </div>
+            </div>
+                
+            <div id="textblock98" style="display: none;">
+            <form id="commentsForm" method="post" action="./8#comments"><p>Для комментирования требуется <a href="..\..\login-6.html?back=https%3A%2F%2Fvkstorm.ru%2Fnews%2Fview%2F8">авторизация</a>.</p></form>
+            </div>
+            
+          <div id="loadComments"></div>
+        <div class="button-comments">
+        <input type="button" name="more" value="показать еще">
+        <div id="comments-upBlock"><img src="..\..\design\images\loading.gif"></div>
+        </div></div>
+    </div>
+    </div></div>
+  </div>
+  <!-- end left col --><!-- right col -->
+      <div id="right_col"><noindex>
+          <!-- right block -->
+          <div class="right_block">
+            <div class="rb_head">Новости</div><div class="rb_cont nws">
+                <p class="nwsh"><b>Черная пятница — бонусы при пополнении до 60%!</b><span style="display: block;font-size: 12px;padding: 2px 0;">28 ноября 2019</span></p>
+                <p>Black Friday!<br>
+<br>
+Увеличиваем бонусы при пополнении баланса:<br>
+При пополнении от 5 000 поинтов бонус +500 поинтов (10%).<br>
+При пополнении от 10 000 поинтов бонус +2 000 поинтов (2...</p>
+                 <a href="19.html" rel="nofollow">читать далее &#187;&#187;</a>
+              </div><div class="rb_cont nws">
+                <p class="nwsh"><b>Просмотры записей и увеличение реферальных отчислений</b><span style="display: block;font-size: 12px;padding: 2px 0;">9 июля 2019</span></p>
+                <p>Доброго времени суток!<br>
+<br>
+1. Добавили новый тип заданий — Просмотры записей. <br>
+Счётчик просмотров поможет максимально быстро отслеживать интерес к записи: чтобы просмотр засчитался, ...</p>
+                 <a href="18.html" rel="nofollow">читать далее &#187;&#187;</a>
+              </div></div>
+          <!-- end right block -->
+          
+          <p><a href="..\..\news.html" rel="nofollow">Все новости</a></p>
+          </noindex></div>
+      <!-- end right col -->
+      
+      <div class="cl end"></div>
+      </div>
+      <!-- end content --><!-- footer -->
+  <div id="foot"><ul><li><a href="..\..\about\index.htm">О проекте</a></li><li><a href="..\..\help\index.htm">Помощь</a></li><li><a href="..\..\regulations\index.htm">Правила</a></li><li><a href="..\..\agreement\index.htm">Оферта</a></li><li><a href="..\..\privacy\index.htm">Конфиденциальность</a></li><li><a href="..\..\price\index.htm">Прайс-лист</a></li><li><a href="..\..\contacts\index.htm">Контакты</a></li><li><a href="..\..\sitemap.html">Карта сайта</a></li>
+    
+    </ul><div class="fl">
+		VKSTORM &#169; 2014-2020	</div><div class="fr">
+		<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter25147229 = new Ya.Metrika({
+                    id:25147229,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://d31j93rd8oukbv.cloudfront.net/metrika/watch_ua.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/25147229" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53289238-2', 'auto');
+  ga('send', 'pageview');
+
+</script>	</div>
+  </div>
+  <!-- end footer -->
+
+  </div>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+
+	<!--<script src="/design/js/jquery.effects.core.js" type="text/javascript"></script>
+	<script type="text/javascript" src="/design/js/menu.js"></script>-->
+  	</div></body></html>
