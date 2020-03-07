@@ -15,7 +15,10 @@ const googleTranslateConfig = {
 function TranslateInit() {
     let code = TranslateGetCode();
     // Находим флаг с выбранным языком для перевода и добавляем к нему активный класс
-    $('[data-google-lang="' + code + '"]').addClass('language__img_active');
+    if (document.querySelector('[data-google-lang="' + code + '"]') !== null) {
+        document.querySelector('[data-google-lang="' + code + '"]').classList.add('language__img_active');
+    }
+
 
     if (code == googleTranslateConfig.lang) {
         // Если язык по умолчанию, совпадает с языком на который переводим
@@ -29,8 +32,8 @@ function TranslateInit() {
     });
 
     // Вешаем событие  клик на флаги
-    $('[data-google-lang]').click(function () {
-        TranslateCookieHandler("/auto/" + $(this).attr("data-google-lang"), googleTranslateConfig.domain);
+    TranslateEventHandler('click', '[data-google-lang]', function (e) {
+        TranslateCookieHandler("/" + googleTranslateConfig.lang + "/" + e.getAttribute("data-google-lang"), googleTranslateConfig.domain);
         // Перезагружаем страницу
         window.location.reload();
     });
@@ -38,24 +41,31 @@ function TranslateInit() {
 
 function TranslateGetCode() {
     // Если куки нет, то передаем дефолтный язык
-    let lang = ($.cookie('googtrans') != undefined && $.cookie('googtrans') != "null") ? $.cookie('googtrans') : googleTranslateConfig.lang;
+    let lang = (Cookies.get('googtrans') != undefined && Cookies.get('googtrans') != "null") ? Cookies.get('googtrans') : googleTranslateConfig.lang;
     return lang.match(/(?!^\/)[^\/]*$/gm)[0];
 }
 
 function TranslateCookieHandler(val, domain) {
     // Записываем куки /язык_который_переводим/язык_на_который_переводим
-    $.cookie('googtrans', val);
-    $.cookie("googtrans", val, {
+    Cookies.set('googtrans', val);
+    Cookies.set("googtrans", val, {
         domain: "." + document.domain,
     });
 
     if (domain == "undefined") return;
     // записываем куки для домена, если он назначен в конфиге
-    $.cookie("googtrans", val, {
+    Cookies.set("googtrans", val, {
         domain: domain,
     });
 
-    $.cookie("googtrans", val, {
+    Cookies.set("googtrans", val, {
         domain: "." + domain,
+    });
+}
+
+function TranslateEventHandler(event, selector, handler) {
+    document.addEventListener(event, function (e) {
+        let el = e.target.closest(selector);
+        if (el) handler(el);
     });
 }
